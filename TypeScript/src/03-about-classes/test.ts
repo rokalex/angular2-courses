@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 var expect = chai.expect;
 
-describe('about classes', () => {
+describe.only('about classes', () => {
   function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => Object
         .getOwnPropertyNames(baseCtor.prototype)
@@ -9,14 +9,27 @@ describe('about classes', () => {
   }
 
   it('1-your first class', () => {
-    class SuperHero { } // _
+    class SuperHero {
+      constructor (private prenom : string, private nom : string){
+
+      }
+      talk():string{
+        return `My favourite saying is : Hi my name is ${this.prenom} ${this.nom}`;
+      }
+    } // _
 
     var hero = new SuperHero('Bruce', 'Wayne');
     expect(hero.talk()).to.equal('My favourite saying is : Hi my name is Bruce Wayne');
   });
 
   it('2-you can use getter and setters', () => {
-    class Person { } // _
+    class Person {
+      public fullName : string
+      constructor (private prenom : string, private nom : string){
+
+        this.fullName = `${this.prenom} ${this.nom}`
+      }
+    } // _
 
     var person = new Person('John', 'Doe');
     expect(person.fullName).to.equal('John Doe');
