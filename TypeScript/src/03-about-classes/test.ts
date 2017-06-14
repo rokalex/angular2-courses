@@ -42,8 +42,19 @@ describe.only('about classes', () => {
       favouriteLanguage: string;
       sayHi(): string;
     }
+    class Developer implements IDeveloper {
 
-    class Developer { } // _
+      favouriteLanguage:string;
+
+      constructor(public data:string){
+        this.favouriteLanguage = data
+      }
+
+      sayHi(){
+        return `Hello my favourite language is ${this.favouriteLanguage}`
+      }
+
+    } // _
 
     var developer: IDeveloper = new Developer('TypeScript');
     expect(developer.sayHi()).to.equal('Hello my favourite language is TypeScript');
@@ -62,7 +73,10 @@ describe.only('about classes', () => {
       }
     }
 
-    class Sidekick { } // _
+    class Sidekick {
+      public name: string;
+
+    } // _
 
     var batman = new SuperHero('Batman', 'Martial arts');
     var robin = new Sidekick('Robin', 'Stick', batman);
