@@ -73,8 +73,14 @@ describe.only('about classes', () => {
       }
     }
 
-    class Sidekick {
-      public name: string;
+    class Sidekick extends SuperHero {
+
+      constructor(name:string,ability:string, private master : SuperHero){
+        super(name, ability);
+      }
+      public talk() {
+        return `${super.talk()} and my master is ${this.master.name}`
+      }
 
     } // _
 
@@ -97,7 +103,7 @@ describe.only('about classes', () => {
     }
 
     var developer = new Developer('JavaScript');
-    expect(developer.sayHi.call( _ ))
+    expect(developer.sayHi.call({favouriteLanguage: 'TypeScript'} ))
       .to.equal('Hello my favourite language is TypeScript');
   });
 
